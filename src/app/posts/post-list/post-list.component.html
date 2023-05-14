@@ -1,0 +1,14 @@
+
+<div #postItem (click)="onClickPostItem(postItem)" *ngFor="let post of posts" class="flex cursor-pointer post-item flex-col gap-6 mt-4 font-medium shadow-lg px-3 py-3 justify-between">
+  <div class="flex justify-between w-full">
+    {{ post.title }}
+    <p>^</p>
+
+  </div>
+
+  <div class="h-full">
+    <P> {{ post.content }} </P>
+  </div>
+
+</div>
+

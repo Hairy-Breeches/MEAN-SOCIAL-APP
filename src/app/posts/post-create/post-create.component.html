@@ -1,0 +1,25 @@
+<div class="flex flex-col">
+  <form (ngSubmit)="onAddPost()" #postForm="ngForm" class="flex flex-col gap-4 w-full shadow-lg items-center py-4">
+    <div class="flex flex-col gap-4 w-10/12">
+      <div class="flex flex-col">
+        <label for="" class="font-medium">Title</label>
+        <input required #titleInput="ngModel" ngModel name="title" type="text" class="border-2 rounded-md border-gray-200 px-3 py-2">
+        <p class="text-red-400 font-medium" *ngIf="titleInput.invalid && titleInput.touched">This field is requried!</p>
+      </div>
+
+      <label for="" class="font-medium mt-4">Content</label>
+      <textarea #contentInput="ngModel" required ngModel="'No Content!" name="content" rows="9" class="font-medium text-gray-300 border-b-2 border-gray-200 px-2 py-2 shadow-md"></textarea>
+      <p class="text-red-400 font-medium" *ngIf="contentInput.invalid && contentInput.touched">This field is requried!</p>
+
+    </div>
+
+    <div class="w-full">
+      <button [disabled]="postForm.invalid" type="submit" class="px-3 ml-24 w-24 bg-rose-700 rounded-md text-white font-medium py-2">Save Post</button>
+
+    </div>
+
+  </form>
+</div>
+
+
+
