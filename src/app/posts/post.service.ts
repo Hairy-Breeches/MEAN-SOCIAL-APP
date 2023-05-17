@@ -6,6 +6,7 @@ import { PostDataStorageService } from './posts-data-storgare.service';
 import { Subject } from 'rxjs';
 
 import { Post } from './post.model';
+import { environment } from "../../environments/environment";
 
 @Injectable({providedIn: 'root'})
 export class PostService {
