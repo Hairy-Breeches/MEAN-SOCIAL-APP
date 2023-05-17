@@ -7,6 +7,10 @@ import { NgForm } from '@angular/forms'
 import { Post } from '../post.model';
 
 import { PostService } from '../post.service';
+import { environment } from "../../environments/environment";
+
+const BACKEND_URL = environment.apiUrl + "/posts/";
+
 
 @Component({
   selector: 'app-post-create',
@@ -27,7 +31,7 @@ export class PostCreateComponent {
     const content = this.postForm.value.content;
     const currentPost = new Post('', title, content)
 
-    this.http.post<{message: string}>('http://localhost:3000/api/posts', currentPost).subscribe({
+    this.http.post<{message: string}>(BACKEND_URL + '/posts', currentPost).subscribe({
       next: responseData => {
 
         this.postService.addPost(currentPost)
