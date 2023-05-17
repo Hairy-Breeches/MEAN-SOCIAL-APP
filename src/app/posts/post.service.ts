@@ -6,7 +6,7 @@ import { PostDataStorageService } from './posts-data-storgare.service';
 import { Subject } from 'rxjs';
 
 import { Post } from './post.model';
-import { environment } from "../../environments/environment";
+import { environment } from "../environments/environment";
 
 const BACKEND_URL = environment.apiUrl + "/posts/";
 
