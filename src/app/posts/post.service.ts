@@ -6,9 +6,6 @@ import { PostDataStorageService } from './posts-data-storgare.service';
 import { Subject } from 'rxjs';
 
 import { Post } from './post.model';
-import { environment } from "../environments/environment";
-
-const BACKEND_URL = environment.apiUrl + "/posts/";
 
 @Injectable({providedIn: 'root'})
 export class PostService {
@@ -24,7 +21,7 @@ export class PostService {
   }
 
   getPost() {
-    this.http.get<{message: string, posts: Post[]}>(BACKEND_URL + '/posts').subscribe(
+    this.http.get<{message: string, posts: Post[]}>('http://16.16.78.54/api/posts').subscribe(
       posts => {
         this.posts = posts.posts;
         this.postsUpdated.next(this.posts.slice());
