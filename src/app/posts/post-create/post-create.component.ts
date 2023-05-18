@@ -27,10 +27,11 @@ export class PostCreateComponent {
     const content = this.postForm.value.content;
     const currentPost = new Post('', title, content)
 
-    this.http.post<{message: string}>('http://16.16.78.54/api/posts', currentPost).subscribe({
+    this.http.post<{message: string, id: string}>('http://16.16.78.54/api/posts', currentPost).subscribe({
       next: responseData => {
+        currentPost.id = responseData.id
+        console.log('response: ', responseData)
 
-        this.postService.addPost(currentPost)
       }
     });
 
