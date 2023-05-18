@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { PostDataStorageService } from './posts-data-storgare.service';
 
+import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
 import { Post } from './post.model';
