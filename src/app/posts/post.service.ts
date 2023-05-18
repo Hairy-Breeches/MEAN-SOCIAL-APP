@@ -22,7 +22,7 @@ export class PostService {
   }
 
   getPost() {
-    this.http.get<{message: string, posts: {_id: string, title: string, content: string, __v: number}[]}>('http://16.16.78.54/api/posts')
+    this.http.get<{message: string, posts: {_id: string, title: string, content: string, __v: number}[]}>('http://13.53.72.154/api/posts')
     .pipe(map(responseData => {
       return responseData.posts.map((post: {_id: string, title: string, content: string, __v: number}) => {
         return {
