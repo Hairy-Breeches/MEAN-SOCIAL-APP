@@ -20,8 +20,18 @@ app.use((req, res, next) => {
   next();
 });
 
-
-mongoose.connect('mongodb+srv://Hairy--Breeches:zt1tKUt2YEDEsuvA@cluster0.cuylh78.mongodb.net/?retryWrites=true&w=majority')
+mongoose
+  .connect(
+    "mongodb+srv://Hairy--Breeches:" +
+      process.env.MONGO_ATLAS_PW +
+      "@cluster0-ntrwp.mongodb.net/node-angular"
+  )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed!");
+  });
 .then(() => {
   console.log('Connected to database!')
 })
