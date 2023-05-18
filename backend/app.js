@@ -48,6 +48,9 @@ app.get('/api/posts', (req, res, next) => {
     message: 'Response from the server!',
     posts: documents
   });
+
+  })
 })
+
 
 module.exports = app;
