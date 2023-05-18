@@ -29,7 +29,7 @@ app.use("/", express.static(path.join(__dirname,"angular")));
 //   next();
 // });
 
-app.use("/api/posts", '/api/posts', (req, res, next) => {
+app.use("/api/posts", (req, res, next) => {
   const post = new Post({
     title: req.body.title,
     content: req.body.content
@@ -41,11 +41,12 @@ app.use("/api/posts", '/api/posts', (req, res, next) => {
       id: response._id
     });
 
-  }));
+  })
+})
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "angular","index.html"));
-});
+})
 
 // app.post('/api/posts', (req, res, next) => {
 //   const post = new Post({
