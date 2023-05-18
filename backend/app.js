@@ -29,7 +29,19 @@ app.use("/", express.static(path.join(__dirname,"angular")));
 //   next();
 // });
 
-app.use("/api/posts", postsRoutes);
+app.use("/api/posts", '/api/posts', (req, res, next) => {
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+
+  post.save().then(response => {
+    res.status(200).json({
+      message: 'successful posting!',
+      id: response._id
+    });
+
+  }););
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "angular","index.html"));
