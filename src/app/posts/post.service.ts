@@ -20,12 +20,12 @@ export class PostService {
       next: responseData => {
         currentPost.id = responseData.id
         console.log('response: ', responseData)
-
+        this.posts.push(currentPost);
+        this.postsUpdated.next(this.posts.slice())
       }
     });
 
-    this.posts.push(currentPost);
-    this.postsUpdated.next(this.posts.slice())
+    
 
   }
 
