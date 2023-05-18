@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect('mongodb+srv://Hairy--Breeches:4XSdu4qRJSZq0NUl@cluster0.cuylh78.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://Hairy--Breeches:4XSdu4qRJSZq0NUl@cluster0.cuylh78.mongodb.net/node-angular?retryWrites=true&w=majority')
 
 
 
