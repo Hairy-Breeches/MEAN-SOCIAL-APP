@@ -21,14 +21,24 @@ export class PostService {
   }
 
   getPost() {
-    this.http.get<{message: string, posts: Post[]}>('http://16.16.78.54/api/posts').subscribe(
+    this.http.get<{message: string, posts: {_id: string, title: string, content: string, __v: number}[]}>('http://16.16.78.54/api/posts')
+    .pipe(map(responseData => {
+      return responseData.posts.map((post: {_id: string, title: string, content: string, __v: number}) => {
+        return {
+          id: post._id,
+          title: post.title,
+          content: post.content
+        }
+      })
+
+    }))
+    .subscribe(
       posts => {
-        this.posts = posts.posts;
+        this.posts = posts;
         this.postsUpdated.next(this.posts.slice());
 
       }
     )
 
-  }
 
 }
