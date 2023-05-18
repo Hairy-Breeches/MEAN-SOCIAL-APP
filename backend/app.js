@@ -7,6 +7,8 @@ const Post = require('./models/posts');
 const postsRoutes = require("./routes/posts");
 
 const app = express();
+app.use(cors());
+
 mongoose.connect('mongodb+srv://Hairy--Breeches:KTscpPR9KFTjPgQE@cluster0.cuylh78.mongodb.net/node-angular?retryWrites=true&w=majority')
 .then(() => {
   console.log('Connected to database!')
