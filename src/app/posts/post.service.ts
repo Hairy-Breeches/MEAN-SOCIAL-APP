@@ -15,8 +15,8 @@ export class PostService {
 
   constructor(private http: HttpClient, private postDataStorageService: PostDataStorageService) { }
 
-  addPost(post: Post): void {
-    this.http.post<{message: string, id: string}>('http://localhost:3000/api/posts', currentPost).subscribe({
+  addPost(post: currentPost): void {
+    this.http.post<{message: string, id: string}>('http://16.171.61.235/api/posts', currentPost).subscribe({
       next: responseData => {
         currentPost.id = responseData.id
         console.log('response: ', responseData)
