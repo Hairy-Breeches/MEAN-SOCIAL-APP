@@ -16,7 +16,15 @@ export class PostService {
   constructor(private http: HttpClient, private postDataStorageService: PostDataStorageService) { }
 
   addPost(post: Post): void {
-    this.posts.push(post);
+    this.http.post<{message: string, id: string}>('http://localhost:3000/api/posts', currentPost).subscribe({
+      next: responseData => {
+        currentPost.id = responseData.id
+        console.log('response: ', responseData)
+
+      }
+    });
+
+    this.posts.push(currentPost);
     this.postsUpdated.next(this.posts.slice())
 
   }
