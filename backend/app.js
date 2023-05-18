@@ -41,7 +41,7 @@ app.use("/api/posts", '/api/posts', (req, res, next) => {
       id: response._id
     });
 
-  }););
+  }));
 
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "angular","index.html"));
