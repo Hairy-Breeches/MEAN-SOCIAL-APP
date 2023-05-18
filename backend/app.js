@@ -21,7 +21,12 @@ app.use((req, res, next) => {
 });
 
 mongoose.connect('mongodb+srv://Hairy--Breeches:4XSdu4qRJSZq0NUl@cluster0.cuylh78.mongodb.net/node-angular?retryWrites=true&w=majority')
-
+.then(() => {
+  console.log('Connected to database!')
+})
+.catch(() => {
+  console.log('Connection failed to database!')
+})
 
 
 app.use(express.json());
