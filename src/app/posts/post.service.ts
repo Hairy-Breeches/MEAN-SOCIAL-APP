@@ -16,7 +16,7 @@ export class PostService {
   constructor(private http: HttpClient, private postDataStorageService: PostDataStorageService) { }
 
   addPost(currentPost: Post): void {
-    this.http.post<{message: string, id: string}>('http://16.171.61.235/api/posts', currentPost).subscribe({
+    this.http.post<{message: string, id: string}>('http://16.170.108.222/api/posts', currentPost).subscribe({
       next: responseData => {
         currentPost.id = responseData.id
         console.log('response: ', responseData)
@@ -30,7 +30,7 @@ export class PostService {
   }
 
   getPost() {
-    this.http.get<{message: string, posts: {_id: string, title: string, content: string, __v: number}[]}>('http://16.171.61.235/api/posts')
+    this.http.get<{message: string, posts: {_id: string, title: string, content: string, __v: number}[]}>('http://16.170.108.222/api/posts')
     .pipe(map(responseData => {
       return responseData.posts.map((post: {_id: string, title: string, content: string, __v: number}) => {
         return {
