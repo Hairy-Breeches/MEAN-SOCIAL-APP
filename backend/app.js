@@ -1,12 +1,21 @@
 const path = require('path');
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
-const Post = require('./models/posts');
 
 const postsRoutes = require("./routes/posts");
 
 const app = express();
+app.use(express.json());
+
+
+mongoose.connect('mongodb+srv://Hairy--Breeches:2JCT8ReSj4x6DH1N@cluster0.cuylh78.mongodb.net/?retryWrites=true&w=majority')
+.then(() => {
+  console.log('Connected to database!')
+})
+.catch(() => {
+  console.log('Connection failed to database!')
+})
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -20,48 +29,42 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect('mongodb+srv://Hairy--Breeches:dkDTWJrqOmn6RYGv@cluster0.cuylh78.mongodb.net/node-angular?retryWrites=true&w=majority')
-.then(() => {
-  console.log('Connected to database!')
-})
-.catch(() => {
-  console.log('Connection failed to database!')
-})
-
-
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
 app.use("/", express.static(path.join(__dirname,"angular")));
 
-app.use("/api/posts", (req, res, next) => {
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content
-  });
+// app.post("/api/posts", (req, res, next) => {
+//   const post = new Post({
+//     title: req.body.title,
+//     content: req.body.content
+//   });
 
-  post.save().then(response => {
-    res.status(200).json({
-      message: 'successful posting!',
-      id: response._id
-    });
+//   post.save().then(response => {
+//     res.status(200).json({
+//       message: 'successful posting!',
+//       id: response._id
+//     });
 
-  })
-})
+//   })
+// })
 
+
+app.use("/api/posts", postsRoutes);
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "angular","index.html"));
 })
 
-app.get('/api/posts', (req, res, next) => {
-  Post.find().then(documents => {
+// app.get('/api/posts', (req, res, next) => {
+//   console.log('triggered!')
+//   Post.find().then(documents => {
 
-  res.status(200).json({
-    message: 'Response from the server!',
-    posts: documents
-  });
+//   res.status(200).json({
+//     message: 'Response from the server!',
+//     posts: documents
+//   });
 
-  })
-})
+//   }).catch(() => {
+//     console.log('error in get')
+//   })
+// })
 
 
 module.exports = app;
