@@ -9,7 +9,7 @@ app.use(express.json());
 
 mongoose
   .connect(
-    "mongodb+srv://Hairy--Breeches:WYATikbDByMLJYaC@cluster0.1tonzuh.mongodb.net/social-app?retryWrites=true&w=majority"
+    "mongodb+srv://Hairy--Breeches:hTaPF0yL89lfELXr@cluster0.1tonzuh.mongodb.net/social-app?retryWrites=true&w=majority"
   )
 
   .then(() => {
