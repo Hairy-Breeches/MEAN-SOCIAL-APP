@@ -7,14 +7,18 @@ const postsRoutes = require("./routes/posts");
 const app = express();
 app.use(express.json());
 
+mongoose
+  .connect(
+    "mongodb+srv://Hairy--Breeches:WYATikbDByMLJYaC@cluster0.1tonzuh.mongodb.net/social-app?retryWrites=true&w=majority"
+  )
 
-mongoose.connect('mongodb+srv://Hairy--Breeches:E0cTIcf33tO3HYrA@cluster0.1tonzuh.mongodb.net/MEAN-Social-App?retryWrites=true&w=majority')
-.then(() => {
-  console.log('Connected to database!')
-})
-.catch(() => {
-  console.log('Connection failed to database!')
-})
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch(() => {
+    console.log("Connection failed to database!");
+  });
+
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
